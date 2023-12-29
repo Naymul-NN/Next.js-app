@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
+import Image from "next/image";
 import { useEffect, useState } from "react";
 const DisplayTree = () => {
     const [display, setDisplay] = useState([]);
@@ -19,8 +20,9 @@ console.log(display)
                 display?.map(item=> (
                         <div key={item._id}> 
                           <div className="card card-compact  bg-base-100 shadow-xl">
-                       <figure className="h-52"><img
-                       
+                       <figure className="h-52"><Image
+                       height={250}
+                       width={300}
                        className="hover:scale-110" 
                        src={item.photo} alt="Shoes" /></figure>
                        <div className="card-body">
