@@ -1,11 +1,13 @@
 import React from 'react';
 import Data from "@/components/ui/Data"
 import Layout from './mainlayout';
+import Banner from '@/components/Banner';
+
 const HomePage = () => {
     return (
        <Layout>
          <div>
-            <h1 className=' text-center font-bold text-red-400'>this is one of the best way to buils a next app</h1>
+            <Banner></Banner>
             <Data></Data>
         </div>
        </Layout>

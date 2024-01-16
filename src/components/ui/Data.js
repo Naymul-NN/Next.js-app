@@ -1,15 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
-import Image from "next/image";
-import { useEffect, useState } from "react";
-const DisplayTree = () => {
-    const [display, setDisplay] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/displayTree")
-      .then((res) => res.json())
-      .then((data) => setDisplay(data))
-  }, []);
+import Image from "next/image";
+import Link from "next/link";
+import Datas from "./Datas";
+const DisplayTree = async() => {
+ const display = await Datas();
+  
 
 console.log(display)
     return (
@@ -19,7 +15,7 @@ console.log(display)
                 {
                 display?.map(item=> (
                         <div key={item._id}> 
-                          <div className="card card-compact  bg-base-100 shadow-xl">
+                          <div className="card card-compact  bg-[#0d0c22] shadow-xl">
                        <figure className="h-52"><Image
                        height={250}
                        width={300}
@@ -31,8 +27,10 @@ console.log(display)
                      <button className="btn hover:bg-orange-400">add to cart</button>
                     </div>
                     </div>
+                    <Link href={`/${item._id}`} className="pl-5 underline">see more</Link>
                      </div>
-                        </div>
+                     
+                    </div>
                     ))
                 }
             </div>
