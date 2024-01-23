@@ -1,5 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
+import AuthProvider from '@/components/auth/AuthProvider'
+import { Toaster } from 'react-hot-toast'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
      <body className={`bg-[#0d0c22] ${inter.className} text-white`}>
-              
-        {children}</body>
+      <AuthProvider>
+        {children}
+      </AuthProvider>
+      <Toaster />
+        </body>
     </html>
   )
 }

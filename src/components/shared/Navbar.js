@@ -1,7 +1,24 @@
+"use client"
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../auth/AuthProvider';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+
+    const {user, logOut} = useContext(AuthContext)
+
+    const handleLogout = async () => {
+        try {
+          await logOut();
+          toast.success('Sign out successful');
+        } catch (error) {
+          console.error('Logout failed:', error);
+          toast.error('Sign out failed. Please try again.');
+        }
+      };
+
     return (
         <div>
             <div className="navbar bg-[#0d0c22]">
@@ -15,7 +32,7 @@ const Navbar = () => {
                                 <Link href="/home">Home</Link>
                             </li>
                             <li><Link href="/about">About</Link></li>
-                           
+
                             <li><Link href="/blog">Blog</Link></li>
                             <li><Link href="/dashboard">Dashboard</Link></li>
                         </ul>
@@ -33,8 +50,18 @@ const Navbar = () => {
                         <li><Link href="/dashboard">Dashboard</Link></li>
                     </ul>
                 </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
+                <div className="navbar-end flex lg:flex-row flex-col ">
+                    {
+                        user && <h1 className="pr-2"><span className="font-bold">user:</span>{user.email}</h1>
+                    }
+                    {
+                        user ?
+                            <button onClick={handleLogout} className="btn btn-sm btn-primary">log out</button>
+                            :
+
+                            <Link href="/login"><button className="btn  btn-sm btn-primary">log in</button></Link>
+
+                    }
                 </div>
             </div>
         </div>
