@@ -7,7 +7,7 @@ const DisplayTree = async() => {
  const display = await Datas();
   
 
-console.log(display)
+// console.log(display)
     return (
         <div  className="w-11/12 mx-auto">
             <p className="my-5 text-center font-bold border-b-2 text-2xl border-b-red-400 w-60 pb-2 mx-auto">Trending products</p>
